@@ -227,32 +227,76 @@ int main() {
 
     setlocale(LC_ALL, "Russian");
 
-    int n;
-    cout << "Введите количество элементов в массиве: ";
-    cin >> n;
+    while (true) {
+        cout << "\nМЕНЮ ПРОГРАММЫ:\n";
+        cout << "1. Демонстрация работы на ручном вводе\n";
+        cout << "2. Запуск тестов производительности (10,000 тестов на размер)\n";
+        cout << "3. Проверка корректности алгоритмов\n";
+        cout << "4. Выход\n";
+        cout << "Выберите пункт: ";
 
-    vector<int> arr(n);
+        int choice;
+        cin >> choice;
 
-    cout << "Введите " << n << " элементов массива:" << endl;
-    for (int i = 0; i < n; i++) {
-        int item;
-        cin >> item;
-        arr[i] = item;
+        if (choice == 1) {
+            // Режим ручного ввода
+            int n;
+            cout << "Введите количество элементов: ";
+            cin >> n;
+
+            vector<int> arr(n);
+            cout << "Введите " << n << " элементов:\n";
+            for (int i = 0; i < n; i++) {
+                cin >> arr[i];
+            }
+
+            cout << "\nИсходный массив: ";
+            for (int num : arr) cout << num << " ";
+            cout << endl;
+
+            // QuickSort
+            vector<int> quickResult = arr;
+            if (!quickResult.empty()) {
+                QuickSort(quickResult, 0, quickResult.size() - 1);
+            }
+            cout << "QuickSort: ";
+            for (int num : quickResult) cout << num << " ";
+            cout << endl;
+
+            // MergeSort
+            vector<int> mergeResult = arr;
+            if (!mergeResult.empty()) {
+                MergeSort(mergeResult, 0, mergeResult.size() - 1);
+            }
+            cout << "MergeSort: ";
+            for (int num : mergeResult) cout << num << " ";
+            cout << endl;
+
+            // std::sort для проверки
+            vector<int> stdResult = arr;
+            sort(stdResult.begin(), stdResult.end());
+            cout << "std::sort (эталон): ";
+            for (int num : stdResult) cout << num << " ";
+            cout << endl;
+
+        }
+        else if (choice == 2) {
+            runPerformanceTests();
+
+        }
+        else if (choice == 3) {
+            testCorrectness();
+
+        }
+        else if (choice == 4) {
+            cout << "Выход из программы.\n";
+            break;
+
+        }
+        else {
+            cout << "Неверный выбор. Попробуйте снова.\n";
+        }
     }
 
-    cout << "\nИсходный массив: ";
-    for (int num : arr) cout << num << " ";
-    cout << endl;
-
-    QuickSort(arr, 0, n - 1);
-    cout << "Быстрая сортировка: ";
-    for (int num : arr) cout << num << " ";
-    cout << endl;
-
-    MergeSort(arr, 0, n-1);
-    cout << "Сортировка слиянием: ";
-    for (int num : arr) cout << num << " ";
-    cout << endl;
-
-
+    return 0;
 }
