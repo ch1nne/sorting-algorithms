@@ -1,9 +1,14 @@
 #include <iostream>
 #include <vector>
 #include <climits> // Для INT_MAX (стража)
+#include <chrono>
+#include <random>
+#include <algorithm>
+#include <iomanip>
+#include <cmath>
 
 using namespace std;
-
+using namespace std::chrono;
 
 void Merge(vector<int>& A, int p, int q, int r) {
 
@@ -97,6 +102,19 @@ void QuickSort(vector<int>& A, int p, int r) {
     }
 }
 
+// Функция для генерации случайного массива
+vector<int> generateRandomArray(int n, int max_value) {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(1, max_value);
+
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) {
+        arr[i] = distrib(gen);
+    }
+    return arr;
+}
+
 
 int main() {
 
@@ -119,13 +137,15 @@ int main() {
     for (int num : arr) cout << num << " ";
     cout << endl;
 
-    //MergeSort(arr, 0, n-1);
-    //cout << "Сортировка слиянием: ";
-    //for (int num : arr) cout << num << " ";
-    //cout << endl;
-
     QuickSort(arr, 0, n - 1);
     cout << "Быстрая сортировка: ";
     for (int num : arr) cout << num << " ";
     cout << endl;
+
+    MergeSort(arr, 0, n-1);
+    cout << "Сортировка слиянием: ";
+    for (int num : arr) cout << num << " ";
+    cout << endl;
+
+
 }
