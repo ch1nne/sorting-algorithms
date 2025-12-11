@@ -1,76 +1,64 @@
 #include <iostream>
 #include <vector>
+#include <climits> // Для INT_MAX (стража)
+
 using namespace std;
 
-vector<int> quickSort(vector<int> arr) {
 
-    if (arr.size() <= 1) {
-        return arr;
+void Merge(vector<int>& A, int p, int q, int r) {
+    // Вычисляем размеры левого и правого подмассивов
+    int n1 = q - p + 1; // Длина левого подмассива A[p..q]
+    int n2 = r - q;     // Длина правого подмассива A[q+1..r]
+
+    // оздаем временные массивы L и R с дополнительным местом для стража
+    vector<int> L(n1 + 1);
+    vector<int> R(n2 + 1);
+
+    // Копируем данные во временные массивы L и R
+    for (int i = 0; i < n1; i++) {
+        L[i] = A[p + i];
+    }
+    for (int j = 0; j < n2; j++) {
+        R[j] = A[q + 1 + j];
     }
 
-    int pivot = arr[0];
-    vector<int> less, big;
+    // Устанавливаем стражи в концы массивов
+    // Стражи гарантируют, что мы никогда не выйдем за пределы массивов L и R
+    L[n1] = INT_MAX;
+    R[n2] = INT_MAX; 
 
-    for (int i = 1; i < arr.size(); i++) {
-        if (arr[i] <= pivot) {
-            less.push_back(arr[i]);
-        }
-        else {
-            big.push_back(arr[i]);
-        }
-    }
+    // Слияние двух массивов L и R обратно в A[p..r]
+    int i = 0; // Индекс в L
+    int j = 0; // Индекс в R
 
-    vector<int> result;
-    vector<int> sortedLess = quickSort(less);
-    vector<int> sortedBig = quickSort(big);
-
-    result.insert(result.end(), sortedLess.begin(), sortedLess.end());
-    result.push_back(pivot);
-    result.insert(result.end(), sortedBig.begin(), sortedBig.end());
-
-    return result;
-}
-
-vector<int> mergeSort(vector<int> arr) {
-
-    if (arr.size() <= 1) {
-        return arr;
-    }
-
-    int mid = arr.size() / 2;
-
-    vector<int> left(arr.begin(), arr.begin() + mid);
-    vector<int> right(arr.begin() + mid, arr.end());
-
-    left = mergeSort(left);
-    right = mergeSort(right);
-
-    vector<int> result;
-    int i = 0, j = 0;
-
-    while (i < left.size() && j < right.size()) {
-        if (left[i] <= right[j]) {
-            result.push_back(left[i]);
+    for (int k = p; k <= r; k++) {
+        if (L[i] <= R[j]) {
+            A[k] = L[i];
             i++;
         }
         else {
-            result.push_back(right[j]);
+            A[k] = R[j];
             j++;
         }
     }
-
-    while (i < left.size()) {
-        result.push_back(left[i]);
-        i++;
-    }
-
-    while (j < right.size()) {
-        result.push_back(right[j]);
-        j++;
-    }
-
-    return result;
+    
 }
+
+// Сортировка слиянием
+void MergeSort(vector<int>& A, int p, int r) {
+    if (p < r) { // Массив из одного элемента уже отсортирован
+        // Находим середину подмассива
+        int q = p + (r - p) / 2;
+
+        // Рекурсивно сортируем левую и правую половины
+        MergeSort(A, p, q);      // Сортировка левой половины A[p..q]
+        MergeSort(A, q + 1, r);  // Сортировка правой половины A[q+1..r]
+
+        // Сливаем две отсортированные половины
+        Merge(A, p, q, r);
+    }
+}
+
 
 int main() {
 
@@ -93,29 +81,8 @@ int main() {
     for (int num : arr) cout << num << " ";
     cout << endl;
 
-    vector<int> quickSorted = quickSort(arr);
-    cout << "Быстрая сортировка: ";
-    for (int num : quickSorted) cout << num << " ";
-    cout << endl;
-    vector<int> mergeSorted = mergeSort(arr);
+    MergeSort(arr, 0, n-1);
     cout << "Сортировка слиянием: ";
-    for (int num : mergeSorted) cout << num << " ";
+    for (int num : arr) cout << num << " ";
     cout << endl;
 }
-
-
-//int partition(vector<int>& arr, int low, int high) {
-//    int pivot = arr[high];  //Опорный элемент - последний элемент
-//    int i = low - 1;        //Индекс меньшего элемента
-//
-//    for (int j = low; j < high; j++) {
-//        //Если текущий элемент меньше или равен опорному
-//        if (arr[j] <= pivot) {
-//            i++;  //Сдвигаем границу меньших элементов
-//            swap(arr[i], arr[j]);  //Помещаем меньший элемент в левую часть
-//        }
-//    }
-//    // Размещаем опорный элемент на правильную позицию
-//    swap(arr[i + 1], arr[high]);
-//    return i + 1;  // Возвращаем индекс опорного элемента
-//}
