@@ -6,6 +6,7 @@ using namespace std;
 
 
 void Merge(vector<int>& A, int p, int q, int r) {
+
     // Вычисляем размеры левого и правого подмассивов
     int n1 = q - p + 1; // Длина левого подмассива A[p..q]
     int n2 = r - q;     // Длина правого подмассива A[q+1..r]
@@ -59,6 +60,43 @@ void MergeSort(vector<int>& A, int p, int r) {
     }
 }
 
+int Partition(vector<int>& A, int p, int r) {
+    // Опорный элемент - последний элемент подмассива
+    int x = A[r];
+
+    // Инициализируем границу i для элементов <= x
+    int i = p - 1;
+
+    // Проходим по всем элементам, кроме последнего (опорного)
+    for (int j = p; j <= r - 1; j++) {
+
+        // Если текущий элемент меньше или равен опорному
+        if (A[j] <= x) {
+         
+            i = i + 1;   // Увеличиваем границу i
+            swap(A[i], A[j]);   // И меняем местами A[i] и A[j]
+        }
+        // Если A[j] > x, просто увеличиваем j (правая область расширяется)
+    }
+
+    // Помещаем опорный элемент на его окончательную позицию
+    swap(A[i + 1], A[r]);
+
+    // Возвращаем индекс опорного элемента
+    return i + 1;
+}
+
+void QuickSort(vector<int>& A, int p, int r) {
+
+    if (p < r) {
+
+        int q = Partition(A, p, r);
+
+        QuickSort(A, p, q - 1);
+        QuickSort(A, q + 1, r);
+    }
+}
+
 
 int main() {
 
@@ -81,8 +119,13 @@ int main() {
     for (int num : arr) cout << num << " ";
     cout << endl;
 
-    MergeSort(arr, 0, n-1);
-    cout << "Сортировка слиянием: ";
+    //MergeSort(arr, 0, n-1);
+    //cout << "Сортировка слиянием: ";
+    //for (int num : arr) cout << num << " ";
+    //cout << endl;
+
+    QuickSort(arr, 0, n - 1);
+    cout << "Быстрая сортировка: ";
     for (int num : arr) cout << num << " ";
     cout << endl;
 }
