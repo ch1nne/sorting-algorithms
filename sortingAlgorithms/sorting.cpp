@@ -115,6 +115,113 @@ vector<int> generateRandomArray(int n, int max_value) {
     return arr;
 }
 
+// Функция тестирования производительности
+void runPerformanceTests() {
+    vector<int> sizes = { 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000 };
+    const int NUM_TESTS_PER_SIZE = 10000;
+
+    cout << "ЗАПУСК ТЕСТОВ ПРОИЗВОДИТЕЛЬНОСТИ\n";
+    cout << "==========================================================\n";
+    cout << "Количество тестов для каждого размера: " << NUM_TESTS_PER_SIZE << "\n";
+    cout << "==========================================================\n\n";
+
+    cout << fixed << setprecision(2);
+    cout << "=====================================================================\n";
+    cout << "| Размер |   MergeSort   |   QuickSort   |   std::sort   |\n";
+    cout << "| данных |   (микросек)  |   (микросек)  |   (микросек)  |\n";
+    cout << "=====================================================================\n";
+
+    for (int n : sizes) {
+        long long totalMergeTime = 0;
+        long long totalQuickTime = 0;
+        long long totalStdSortTime = 0;
+
+        // Максимальное значение согласно вашим требованиям: 10^n
+        int max_value = pow(10, min(n, 6)); // Ограничиваем, чтобы избежать переполнения
+
+        for (int test = 0; test < NUM_TESTS_PER_SIZE; test++) {
+            // Генерируем случайный массив
+            vector<int> original = generateRandomArray(n, max_value);
+
+            // ТЕСТ MERGESORT (прямой вызов)
+            vector<int> arr1 = original;
+            auto start = high_resolution_clock::now();
+            if (!arr1.empty()) {
+                MergeSort(arr1, 0, arr1.size() - 1);
+            }
+            auto end = high_resolution_clock::now();
+            totalMergeTime += duration_cast<microseconds>(end - start).count();
+
+            // ТЕСТ QUICKSORT (прямой вызов)
+            vector<int> arr2 = original;
+            start = high_resolution_clock::now();
+            if (!arr2.empty()) {
+                QuickSort(arr2, 0, arr2.size() - 1);
+            }
+            end = high_resolution_clock::now();
+            totalQuickTime += duration_cast<microseconds>(end - start).count();
+
+            // ТЕСТ std::sort
+            vector<int> arr3 = original;
+            start = high_resolution_clock::now();
+            sort(arr3.begin(), arr3.end());
+            end = high_resolution_clock::now();
+            totalStdSortTime += duration_cast<microseconds>(end - start).count();
+        }
+
+        // Вычисляем средние значения
+        double avgMerge = (double)totalMergeTime / NUM_TESTS_PER_SIZE;
+        double avgQuick = (double)totalQuickTime / NUM_TESTS_PER_SIZE;
+        double avgStd = (double)totalStdSortTime / NUM_TESTS_PER_SIZE;
+
+        // Выводим строку таблицы
+        cout << "| " << setw(6) << n << " | "
+            << setw(13) << avgMerge << " | "
+            << setw(13) << avgQuick << " | "
+            << setw(13) << avgStd << " |\n";
+    }
+
+    cout << "=====================================================================\n";
+}
+
+// Функция для проверки корректности
+void testCorrectness() {
+    cout << "\nТЕСТИРОВАНИЕ КОРРЕКТНОСТИ АЛГОРИТМОВ\n";
+    cout << "====================================\n";
+
+    vector<vector<int>> testCases = {
+        {},
+        {1},
+        {2, 1},
+        {1, 2, 3, 4, 5},
+        {5, 4, 3, 2, 1},
+        {3, 7, 2, 8, 1, 9, 4, 6, 5},
+        {5, 5, 5, 5, 5},
+        {1, 3, 2, 4, 2, 3, 1}
+    };
+
+    int testNumber = 1;
+    for (auto& testCase : testCases) {
+        cout << "Тест " << testNumber++ << ": ";
+
+        vector<int> arr1 = testCase;
+        vector<int> arr2 = testCase;
+        vector<int> arr3 = testCase;
+
+        // Сортируем тремя способами
+        if (!arr1.empty()) MergeSort(arr1, 0, arr1.size() - 1);
+        if (!arr2.empty()) QuickSort(arr2, 0, arr2.size() - 1);
+        sort(arr3.begin(), arr3.end());
+
+        bool mergeOk = (arr1 == arr3);
+        bool quickOk = (arr2 == arr3);
+
+        cout << "MergeSort: " << (mergeOk ? "ПРОЙДЕН" : "ОШИБКА") << ", ";
+        cout << "QuickSort: " << (quickOk ? "ПРОЙДЕН" : "ОШИБКА") << endl;
+    }
+
+    cout << "====================================\n";
+}
 
 int main() {
 
