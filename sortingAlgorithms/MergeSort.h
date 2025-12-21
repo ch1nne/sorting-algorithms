@@ -1,14 +1,11 @@
-// 
-
-
-#pragma once
+п»ї#pragma once
 #include <vector>
 
 using namespace std;
 
-// Обычная версия
+// РћР±С‹С‡РЅР°СЏ РІРµСЂСЃРёСЏ
 void MergeSort(vector<int>& arr, int left, int right);
 
-// Версия с метриками (передаём счётчики по ссылке)
+// Р’РµСЂСЃРёСЏ СЃ РјРµС‚СЂРёРєР°РјРё (РїРµСЂРµРґР°С‘Рј СЃС‡С‘С‚С‡РёРєРё РїРѕ СЃСЃС‹Р»РєРµ)
 void MergeSortWithMetrics(vector<int>& arr, int left, int right,
     long long& comparisons, long long& swaps);
