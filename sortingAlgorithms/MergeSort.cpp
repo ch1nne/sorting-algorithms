@@ -38,7 +38,7 @@ void MergeSort(vector<int>& A, int p, int r) {
 
 // Версия с метриками
 void MergeWithMetrics(vector<int>& A, int p, int q, int r,
-    long long& comparisons, long long& swaps) {
+    long long& comparisons, long long& assignments) {
     int n1 = q - p + 1;
     int n2 = r - q;
     vector<int> L(n1 + 1), R(n2 + 1);
@@ -58,7 +58,7 @@ void MergeWithMetrics(vector<int>& A, int p, int q, int r,
         else {
             A[k] = R[j++];
         }
-        swaps++;
+        assignments++; // Каждое присваивание в массив A
     }
 }
 

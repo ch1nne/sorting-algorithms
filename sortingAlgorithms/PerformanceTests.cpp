@@ -43,7 +43,7 @@ void runPerformanceTests() {
                 MergeSort(arr1, 0, arr1.size() - 1);
             }
             auto end = high_resolution_clock::now();
-            totalMergeTime += duration_cast<microseconds>(end - start).count();
+            totalMergeTime  += duration_cast<microseconds>(end - start).count();
 
             // QuickSort
             vector<int> arr2 = original;
