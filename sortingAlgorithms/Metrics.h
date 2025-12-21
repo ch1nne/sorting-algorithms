@@ -1,3 +1,4 @@
+﻿// Струуктура метрик для анализа количества опреаций
 #pragma once
 #include <iostream>
 
@@ -13,6 +14,6 @@ struct Metrics {
     }
 
     void print() const {
-        cout << "���������: " << comparisons << ", ������: " << swaps;
+        cout << "Сравнения: " << comparisons << ", Обмены: " << swaps;
     }
 };

@@ -1,4 +1,4 @@
-#include "PerformanceTests.h"
+ï»¿#include "PerformanceTests.h"
 #include "MergeSort.h"
 #include "QuickSort.h"
 #include "Utils.h"
@@ -15,15 +15,15 @@ void runPerformanceTests() {
     vector<int> sizes = { 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000 };
     const int NUM_TESTS_PER_SIZE = 10000;
 
-    cout << "ÇÀÏÓÑÊ ÒÅÑÒÎÂ ÏÐÎÈÇÂÎÄÈÒÅËÜÍÎÑÒÈ\n";
+    cout << "Ð—ÐÐŸÐ£Ð¡Ðš Ð¢Ð•Ð¡Ð¢ÐžÐ’ ÐŸÐ ÐžÐ˜Ð—Ð’ÐžÐ”Ð˜Ð¢Ð•Ð›Ð¬ÐÐžÐ¡Ð¢Ð˜\n";
     cout << "==========================================================\n";
-    cout << "Êîëè÷åñòâî òåñòîâ äëÿ êàæäîãî ðàçìåðà: " << NUM_TESTS_PER_SIZE << "\n";
+    cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ñ‚ÐµÑÑ‚Ð¾Ð² Ð´Ð»Ñ ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð°: " << NUM_TESTS_PER_SIZE << "\n";
     cout << "==========================================================\n\n";
 
     cout << fixed << setprecision(2);
     cout << "=====================================================================\n";
-    cout << "| Ðàçìåð |   MergeSort   |   QuickSort   |   std::sort   |\n";
-    cout << "| äàííûõ |   (ìèêðîñåê)  |   (ìèêðîñåê)  |   (ìèêðîñåê)  |\n";
+    cout << "| Ð Ð°Ð·Ð¼ÐµÑ€ |   MergeSort   |   QuickSort   |   std::sort   |\n";
+    cout << "| Ð´Ð°Ð½Ð½Ñ‹Ñ… |   (Ð¼Ð¸ÐºÑ€Ð¾ÑÐµÐº)  |   (Ð¼Ð¸ÐºÑ€Ð¾ÑÐµÐº)  |   (Ð¼Ð¸ÐºÑ€Ð¾ÑÐµÐº)  |\n";
     cout << "=====================================================================\n";
 
     for (int n : sizes) {
@@ -54,7 +54,7 @@ void runPerformanceTests() {
             end = high_resolution_clock::now();
             totalQuickTime += duration_cast<microseconds>(end - start).count();
 
-            // std::sort
+            // sort
             vector<int> arr3 = original;
             start = high_resolution_clock::now();
             sort(arr3.begin(), arr3.end());

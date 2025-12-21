@@ -1,11 +1,10 @@
-#include "QuickSort.h"
+Ôªø#include "QuickSort.h"
 #include "Metrics.h"
 #include <algorithm>
 
 using namespace std;
 
-// ================== Œ¡€◊Õ¿ﬂ ¬≈–—»ﬂ ==================
-
+// –û–±—ã—á–Ω–∞—è –≤–µ—Ä—Å–∏—è 
 int Partition(vector<int>& A, int p, int r) {
     int x = A[r];
     int i = p - 1;
@@ -28,8 +27,7 @@ void QuickSort(vector<int>& A, int p, int r) {
     }
 }
 
-// ================== ¬≈–—»ﬂ — Ã≈“–» ¿Ã» ==================
-
+// –í–µ—Ä—Å–∏—è —Å –º–µ—Ç—Ä–∏–∫–∞–º–∏
 int PartitionWithMetrics(vector<int>& A, int p, int r,
     long long& comparisons, long long& swaps) {
     int pivot = A[r];

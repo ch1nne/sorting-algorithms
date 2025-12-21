@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include "MergeSort.h"
 #include "QuickSort.h"
 #include "PerformanceTests.h"
@@ -11,7 +11,7 @@ using namespace std;
 void demonstrateManualInput() {
     auto arr = inputArrayFromUser();
 
-    cout << "\nÈñõîäíûé ìàññèâ: ";
+    cout << "\nÐ˜ÑÑ…Ð¾Ð´Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð²: ";
     printArray(arr);
 
     // QuickSort
@@ -30,10 +30,10 @@ void demonstrateManualInput() {
     cout << "MergeSort: ";
     printArray(mergeResult);
 
-    // std::sort äëÿ ïðîâåðêè
+    // Ð’ÑÑ‚Ñ€Ð¾ÐµÐ½Ð½Ð°Ñ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ sort Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸
     vector<int> stdResult = arr;
     sort(stdResult.begin(), stdResult.end());
-    cout << "std::sort (ýòàëîí): ";
+    cout << "std::sort (ÑÑ‚Ð°Ð»Ð¾Ð½): ";
     printArray(stdResult);
 }
 
@@ -41,12 +41,12 @@ int main() {
     setlocale(LC_ALL, "Russian");
 
     while (true) {
-        cout << "\nÌÅÍÞ ÏÐÎÃÐÀÌÌÛ:\n";
-        cout << "1. Äåìîíñòðàöèÿ ðàáîòû íà ðó÷íîì ââîäå\n";
-        cout << "2. Çàïóñê òåñòîâ ïðîèçâîäèòåëüíîñòè (10,000 òåñòîâ íà ðàçìåð)\n";
-        cout << "3. Àíàëèç êîëè÷åñòâà îïåðàöèé (ñðàâíåíèÿ è îáìåíû)\n";
-        cout << "4. Âûõîä\n";
-        cout << "Âûáåðèòå ïóíêò: ";
+        cout << "\nÐœÐ•ÐÐ® ÐŸÐ ÐžÐ“Ð ÐÐœÐœÐ«:\n";
+        cout << "1. Ð”ÐµÐ¼Ð¾Ð½ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ Ð½Ð° Ñ€ÑƒÑ‡Ð½Ð¾Ð¼ Ð²Ð²Ð¾Ð´Ðµ\n";
+        cout << "2. Ð—Ð°Ð¿ÑƒÑÐº Ñ‚ÐµÑÑ‚Ð¾Ð² Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸ (10,000 Ñ‚ÐµÑÑ‚Ð¾Ð² Ð½Ð° Ñ€Ð°Ð·Ð¼ÐµÑ€)\n";
+        cout << "3. ÐÐ½Ð°Ð»Ð¸Ð· ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð° Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¹ (ÑÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ñ Ð¸ Ð¾Ð±Ð¼ÐµÐ½Ñ‹)\n";
+        cout << "4. Ð’Ñ‹Ñ…Ð¾Ð´\n";
+        cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿ÑƒÐ½ÐºÑ‚: ";
 
         int choice;
         cin >> choice;
@@ -61,11 +61,11 @@ int main() {
             runOperationsAnalysis();
         }
         else if (choice == 4) {
-            cout << "Âûõîä èç ïðîãðàììû.\n";
+            cout << "Ð’Ñ‹Ñ…Ð¾Ð´ Ð¸Ð· Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹.\n";
             break;
         }
         else {
-            cout << "Íåâåðíûé âûáîð. Ïîïðîáóéòå ñíîâà.\n";
+            cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð°.\n";
         }
     }
 

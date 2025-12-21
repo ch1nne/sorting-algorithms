@@ -1,4 +1,4 @@
-#include "OperationsAnalysis.h"
+п»ї#include "OperationsAnalysis.h"
 #include "MergeSort.h"
 #include "QuickSort.h"
 #include "Utils.h"
@@ -9,20 +9,20 @@
 
 using namespace std;
 
-// Глобальные метрики
+// Р“Р»РѕР±Р°Р»СЊРЅС‹Рµ РјРµС‚СЂРёРєРё
 Metrics mergeMetrics;
 Metrics quickMetrics;
 
 void runOperationsAnalysis() {
-    cout << "\nАНАЛИЗ КОЛИЧЕСТВА ОПЕРАЦИЙ\n";
+    cout << "\nРђРќРђР›РР— РљРћР›РР§Р•РЎРўР’Рђ РћРџР•Р РђР¦РР™\n";
     cout << "==========================================================\n";
-    cout << "Для каждого размера массива выполняется один прогон для подсчёта операций\n";
+    cout << "Р”Р»СЏ РєР°Р¶РґРѕРіРѕ СЂР°Р·РјРµСЂР° РјР°СЃСЃРёРІР° РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РѕРґРёРЅ РїСЂРѕРіРѕРЅ РґР»СЏ РїРѕРґСЃС‡С‘С‚Р° РѕРїРµСЂР°С†РёР№\n";
     cout << "==========================================================\n\n";
 
     cout << fixed << setprecision(0);
     cout << "========================================================================================\n";
-    cout << "| Размер |       MergeSort       |       QuickSort       |         std::sort         |\n";
-    cout << "| данных |  Сравн.  |   Обмены  |  Сравн.  |   Обмены  |  Сравн.  |    Обмены    |\n";
+    cout << "| Р Р°Р·РјРµСЂ |       MergeSort       |       QuickSort       |         std::sort         |\n";
+    cout << "| РґР°РЅРЅС‹С… |  РЎСЂР°РІРЅ.  |   РћР±РјРµРЅС‹  |  РЎСЂР°РІРЅ.  |   РћР±РјРµРЅС‹  |  РЎСЂР°РІРЅ.  |    РћР±РјРµРЅС‹    |\n";
     cout << "========================================================================================\n";
 
     vector<int> sizes = { 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000 };
@@ -34,11 +34,11 @@ void runOperationsAnalysis() {
         vector<int> arrCopy2 = arr;
         vector<int> arrCopy3 = arr;
 
-        // Сбрасываем метрики
+        // РЎР±СЂР°СЃС‹РІР°РµРј РјРµС‚СЂРёРєРё
         mergeMetrics.reset();
         quickMetrics.reset();
 
-        // MergeSort с метриками
+        // MergeSort СЃ РјРµС‚СЂРёРєР°РјРё
         if (!arrCopy1.empty()) {
             long long mergeComp = 0, mergeSwaps = 0;
             MergeSortWithMetrics(arrCopy1, 0, arrCopy1.size() - 1, mergeComp, mergeSwaps);
@@ -46,7 +46,7 @@ void runOperationsAnalysis() {
             mergeMetrics.swaps = mergeSwaps;
         }
 
-        // QuickSort с метриками
+        // QuickSort СЃ РјРµС‚СЂРёРєР°РјРё
         if (!arrCopy2.empty()) {
             long long quickComp = 0, quickSwaps = 0;
             QuickSortWithMetrics(arrCopy2, 0, arrCopy2.size() - 1, quickComp, quickSwaps);
@@ -54,7 +54,7 @@ void runOperationsAnalysis() {
             quickMetrics.swaps = quickSwaps;
         }
 
-        // Для std::sort (оценка)
+        // sort (РѕС†РµРЅРєР°)
         long long stdComparisons = 0, stdSwaps = 0;
         if (!arrCopy3.empty()) {
             stdComparisons = (long long)(n * log2(n) * 1.1);

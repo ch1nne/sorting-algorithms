@@ -1,9 +1,11 @@
-#pragma once
+п»ї#pragma once
 #include <vector>
 
-// Обычная версия QuickSort
-void QuickSort(std::vector<int>& arr, int left, int right);
+using namespace std;
 
-// Версия с метриками
-void QuickSortWithMetrics(std::vector<int>& arr, int left, int right,
+// РћР±С‹С‡РЅР°СЏ РІРµСЂСЃРёСЏ QuickSort
+void QuickSort(vector<int>& arr, int left, int right);
+
+// Р’РµСЂСЃРёСЏ СЃ РјРµС‚СЂРёРєР°РјРё
+void QuickSortWithMetrics(vector<int>& arr, int left, int right,
     long long& comparisons, long long& swaps);

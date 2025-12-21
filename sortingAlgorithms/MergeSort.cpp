@@ -1,12 +1,10 @@
-// MergeSort.cpp
-#include "MergeSort.h"
-#include "Metrics.h"  // <-- Добавить
+п»ї#include "MergeSort.h"
+#include "Metrics.h"
 #include <climits>
 
 using namespace std;
 
-// ================== ОБЫЧНАЯ ВЕРСИЯ ==================
-
+// РћР±С‹С‡РЅР°СЏ РІРµСЂСЃРёСЏ
 void Merge(vector<int>& A, int p, int q, int r) {
     int n1 = q - p + 1;
     int n2 = r - q;
@@ -38,11 +36,7 @@ void MergeSort(vector<int>& A, int p, int r) {
     }
 }
 
-// ================== ВЕРСИЯ С МЕТРИКАМИ ==================
-
-// Глобальные метрики (если нужно)
-// extern Metrics mergeMetrics; // Объявить в .cpp, если используете глобально
-
+// Р’РµСЂСЃРёСЏ СЃ РјРµС‚СЂРёРєР°РјРё
 void MergeWithMetrics(vector<int>& A, int p, int q, int r,
     long long& comparisons, long long& swaps) {
     int n1 = q - p + 1;
@@ -57,7 +51,7 @@ void MergeWithMetrics(vector<int>& A, int p, int q, int r,
 
     int i = 0, j = 0;
     for (int k = p; k <= r; k++) {
-        comparisons++; // Считаем сравнение L[i] <= R[j]
+        comparisons++; // РЎС‡РёС‚Р°РµРј СЃСЂР°РІРЅРµРЅРёРµ L[i] <= R[j]
         if (L[i] <= R[j]) {
             A[k] = L[i++];
         }

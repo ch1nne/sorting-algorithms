@@ -1,3 +1,4 @@
+﻿// Анализ количества операция
 #pragma once
 #include <vector>
 

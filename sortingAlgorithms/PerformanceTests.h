@@ -1,3 +1,4 @@
+﻿// Проверка производительности
 #pragma once
 #include <vector>
 
