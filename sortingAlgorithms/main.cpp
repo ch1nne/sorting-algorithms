@@ -3,6 +3,7 @@
 #include "QuickSort.h"
 #include "PerformanceTests.h"
 #include "OperationsAnalysis.h"
+#include "DataTypesAnalysis.h" 
 #include "Utils.h"
 #include <algorithm>
 
@@ -45,7 +46,8 @@ int main() {
         cout << "1. Демонстрация работы на ручном вводе\n";
         cout << "2. Запуск тестов производительности (10,000 тестов на размер)\n";
         cout << "3. Анализ количества операций (сравнения и обмены)\n";
-        cout << "4. Выход\n";
+        cout << "4. Сравнение алгоритмов на разных типах данных\n";  
+        cout << "5. Выход\n";
         cout << "Выберите пункт: ";
 
         int choice;
@@ -60,7 +62,10 @@ int main() {
         else if (choice == 3) {
             runOperationsAnalysis();
         }
-        else if (choice == 4) {
+        else if (choice == 4) {  // Новая опция
+            runDataTypesAnalysis();
+        }
+        else if (choice == 5) {  // Изменен номер выхода
             cout << "Выход из программы.\n";
             break;
         }
