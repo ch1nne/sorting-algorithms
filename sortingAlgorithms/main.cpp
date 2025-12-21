@@ -5,6 +5,7 @@
 #include "OperationsAnalysis.h"
 #include "DataTypesAnalysis.h" 
 #include "StabilityTest.h"
+#include "MemoryTest.h"
 #include "Utils.h"
 #include <algorithm>
 
@@ -49,7 +50,8 @@ int main() {
         cout << "3. Анализ количества операций (сравнения и обмены)\n";
         cout << "4. Сравнение алгоритмов на разных типах данных\n"; 
         cout << "5. Тест на стабильность сортировок\n";
-        cout << "6. Выход\n";
+        cout << "6. Тест использования памяти\n";
+        cout << "7. Выход\n";
         cout << "Выберите пункт: ";
 
         int choice;
@@ -70,7 +72,10 @@ int main() {
         else if (choice == 5) {
             runStabilityTest();
         }
-        else if (choice == 6) { 
+        else if (choice == 6) {
+            runMemoryUsageTest();
+        }
+        else if (choice == 7) { 
             cout << "Выход из программы.\n";
             break;
         }
