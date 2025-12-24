@@ -125,25 +125,21 @@
   <ItemGroup>
     <ClCompile Include="DataGenerators.cpp" />
     <ClCompile Include="DataTypesAnalysis.cpp" />
-    <ClCompile Include="MemoryTest.cpp" />
     <ClCompile Include="MergeSort.cpp" />
     <ClCompile Include="OperationsAnalysis.cpp" />
     <ClCompile Include="OperationsAnalysis.h" />
     <ClCompile Include="PerformanceTests.cpp" />
     <ClCompile Include="QuickSort.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="StabilityTest.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataGenerators.h" />
     <ClInclude Include="DataTypesAnalysis.h" />
-    <ClInclude Include="MemoryTest.h" />
     <ClInclude Include="MergeSort.h" />
     <ClInclude Include="Metrics.h" />
     <ClInclude Include="PerformanceTests.h" />
     <ClInclude Include="QuickSort.h" />
-    <ClInclude Include="StabilityTest.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
